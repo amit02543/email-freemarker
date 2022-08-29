@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html>
 	<head>
-		<title>Job Status Notification</title>
+		<title>Employee Status Notification</title>
 
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -61,33 +61,33 @@
 				<tr class="header">
 					<th width="5%">Id</th>
 					<th width="15%">Name</th>
-					<th width="10%">Start Time</th>
-					<th width="10%">End Time</th>
-					<th width="10%">Total Records</th>
-					<th width="10%">Total Errors</th>
-					<th width="10%">Run Status</th>
-					<th width="15%">Error Type</th>
-					<th width="15%">Exception Message</th>
+					<th width="10%">Date of Joining</th>
+					<th width="10%">Date of Leave</th>
+					<th width="10%">Total Experience</th>
+					<th width="10%">Location</th>
+					<th width="10%">Status</th>
+					<th width="15%">Employee Type</th>
+					<th width="15%">Skills</th>
 				</tr>
 			</thead>
 			<tbody>
-				<#list jobStatuses as jobStatus>
+				<#list employeeStatuses as employeeStatus>
 					
-					<#assign runStatus>error</#assign>
-					<#if jobStatus.run_status == 'SUCCESS'>
-					  <#assign runStatus>success</#assign>
+					<#assign status>error</#assign>
+					<#if employeeStatus.status == 'Active'>
+					  <#assign status>success</#assign>
 					</#if>
 					
-					<tr class="${runStatus}">
-						<td>${jobStatus.id}</td>
-						<td>${jobStatus.name}</td>
-						<td>${jobStatus.start_time}</td>
-						<td>${jobStatus.end_time}</td>
-						<td>${jobStatus.total_records}</td>
-						<td>${("${jobStatus.total_errors}")!' '}</td>
-						<td>${jobStatus.run_status}</td>
-						<td>${("${jobStatus.error_type}")!' '}</td>
-						<td>${("${jobStatus.exception_message}")!' '}</td>
+					<tr class="${status}">
+						<td>${employeeStatus.id}</td>
+						<td>${employeeStatus.name}</td>
+						<td>${employeeStatus.date_of_joining}</td>
+						<td>${("${employeeStatus.date_of_leave}")!' '}</td>
+						<td>${employeeStatus.total_experience}</td>
+						<td>${employeeStatus.location}</td>
+						<td>${employeeStatus.status}</td>
+						<td>${employeeStatus.employee_type}</td>
+						<td>${("${employeeStatus.skills}")!' '}</td>
 					</tr>
 					
 				</#list>

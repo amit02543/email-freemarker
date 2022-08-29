@@ -4,7 +4,6 @@ import com.amit.config.EmailConfig;
 import com.amit.dao.ApplicationDao;
 import com.amit.service.NotificationService;
 import com.amit.util.MockData;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -59,18 +58,18 @@ public class NotificationServiceImpl implements NotificationService {
         MimeMessage message = emailSenderConfig.createMimeMessage();
 
         Map<String, Object> model = new HashMap<>();
-        model.put("jobStatuses", emailBody);
+        model.put("employeeStatuses", emailBody);
 
 
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED);
 
-        Template template = freeMarkerConfig.getTemplate("job-status-notification.ftl");
+        Template template = freeMarkerConfig.getTemplate("employee-status-notification.ftl");
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
 
 
         helper.setFrom(new InternetAddress(emailConfig.getSenderEmail(), "Email Sender Admin"));
         helper.setText(html, true);
-        helper.setSubject("JOB Status Notification");
+        helper.setSubject("Employee Status Notification");
         helper.setTo(emailConfig.getRecipientEmail());
         //helper.addAttachment("error.txt", new File(filePath));
 
